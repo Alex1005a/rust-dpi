@@ -1,0 +1,14 @@
+[package]
+name = "rust-dpi"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio = { version = "1", features = [
+    "rt-multi-thread",
+    "macros"
+] }
+socks5-server = "0.10.1"
+socket2 = "0.5.7"
+memchr = "2.7.4"
+clap = "4.5.16"
