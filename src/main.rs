@@ -44,7 +44,7 @@ async fn main() -> Result<(), IoError> {
     let server = Server::new(listener, auth);
     
     let mut methods: Vec<Method> = vec![disorder, split, oob].into_iter().flatten().collect();
-    methods.sort_by(|a, b|method_part(b).pos.cmp(&method_part(a).pos));
+    methods.sort_by(|a, b|method_part(a).pos.cmp(&method_part(b).pos));
     
     let params = Params {
         tlsrec: tlsrec,
@@ -171,7 +171,7 @@ where
     let n = reader.read(&mut hello_buf).await?;
     let buffer = &hello_buf[..n];
     let is_https = is_tls_hello(buffer).is_some();
-    if is_https | is_http(buffer).is_some()  {
+    if is_https | is_http(buffer).is_some() {
         desync(buffer,
             params,
             writer,

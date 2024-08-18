@@ -18,7 +18,7 @@ pub fn is_http(buffer: &[u8]) -> Option<usize> {
     ];
     for method in METHODS {
         if buffer.starts_with(method.as_bytes()) {
-            let str = str::from_utf8(buffer).unwrap();
+            let str = String::from_utf8_lossy(buffer);
             if let Some(idx) = str.to_lowercase()
                 .find("\nhost:")
                 .map(|idx| idx + 6) {
